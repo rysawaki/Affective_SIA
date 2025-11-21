@@ -9,7 +9,8 @@ IMPACT_SIZE = 5.0  # 衝撃の大きさ
 # --- 環境（世界）の生成 ---
 # 最初は平穏(0)だが、途中で世界がガラッと変わる(5.0)
 world_state = np.zeros(STEPS)
-world_state[CHANGE_POINT:] = IMPACT_SIZE 
+world_state[CHANGE_POINT:] = IMPACT_SIZE
+
 
 # --- クラス定義 ---
 
@@ -17,22 +18,22 @@ class Agent:
     def __init__(self, name, mode):
         self.name = name
         self.mode = mode
-        self.self_state = 0.0 # 自我の状態（初期値）
-        self.history = []     # 自分の履歴
-        self.plasticity_history = [] # 可塑性（変わりやすさ）の履歴
+        self.self_state = 0.0  # 自我の状態（初期値）
+        self.history = []  # 自分の履歴
+        self.plasticity_history = []  # 可塑性（変わりやすさ）の履歴
 
     def update(self, external_reality):
         # 1. 意味の不整合（Discrepancy）を感知する
         # 「世界」と「自分」のズレ
         discrepancy = abs(external_reality - self.self_state)
-        
+
         # 2. 自我モードによる「可塑性（Plasticity）」の決定
         if self.mode == "Static":
             # 固定的自我：
             # 変化を恐れる。ズレが大きくても、頑なに変わろうとしない（防衛）
             # 常に低い学習率で固定
-            plasticity = 0.05 
-            
+            plasticity = 0.05
+
         elif self.mode == "Generative":
             # 生成的自我：
             # ズレ（意味ショック）が大きいほど、「これは自分を変えるべき時だ」と判断。
@@ -46,10 +47,11 @@ class Agent:
         # S(t+1) = S(t) + Plasticity * (Target - S(t))
         direction = external_reality - self.self_state
         self.self_state += plasticity * direction
-        
+
         # 記録
         self.history.append(self.self_state)
         self.plasticity_history.append(plasticity)
+
 
 # --- シミュレーション実行 ---
 agent_static = Agent("Static Self (固定的)", "Static")
@@ -82,7 +84,7 @@ ax2.legend()
 ax2.grid(True, alpha=0.3)
 
 # 注釈
-ax1.annotate('Imprint Event\n(Loss/Trauma)', xy=(CHANGE_POINT, 0), xytext=(CHANGE_POINT+5, 2),
+ax1.annotate('Imprint Event\n(Loss/Trauma)', xy=(CHANGE_POINT, 0), xytext=(CHANGE_POINT + 5, 2),
              arrowprops=dict(facecolor='black', shrink=0.05))
 
 plt.tight_layout()

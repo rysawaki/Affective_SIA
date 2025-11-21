@@ -5,11 +5,12 @@ import matplotlib.pyplot as plt
 STEPS = 150
 CHANGE_POINT = 50
 DIM = 3
-IMPACT_VEC = np.array([+5.0, -3.0, +4.0]) # 世界からの衝撃
+IMPACT_VEC = np.array([+5.0, -3.0, +4.0])  # 世界からの衝撃
 
 # 世界の「固さ（変えにくさ）」
 # 1.0に近いほど、個人の力では変えられない
-WORLD_INERTIA = 0.9 
+WORLD_INERTIA = 0.9
+
 
 def softmax(x):
     x = np.array(x, dtype=float)
@@ -17,82 +18,84 @@ def softmax(x):
     e = np.exp(x)
     return e / (e.sum() + 1e-8)
 
+
 # --- クラス定義：創造的SIAエージェント ---
 class CreativeSIAAgent:
     def __init__(self, name="Creator"):
         self.name = name
         self.self_state = np.zeros(DIM)
-        
+
         # 意味解釈バイアス
         self.interpret_bias = np.array([-0.5, -0.2, -0.7])
-        
+
         # 痕跡（Trace）
         self.trace = np.zeros(DIM)
 
         # 履歴保存用
         self.self_history = []
         self.trace_history = []
-        self.action_history = [] # 行動（世界への働きかけ）の履歴
+        self.action_history = []  # 行動（世界への働きかけ）の履歴
 
     def interpret(self, external_vec):
         return external_vec + self.interpret_bias
 
     def update_and_act(self, current_world_vec):
         # --- 1. 受容 (Perception & Imprint) ---
-        
+
         # 世界を解釈
         meaning = self.interpret(current_world_vec)
-        
+
         # ズレ（不整合）
         discrepancy = meaning - self.self_state
         shock = np.linalg.norm(discrepancy)
-        
+
         # 可塑性の決定（痕跡主導の注意機構）
-        attention_logits = np.abs(discrepancy) + 0.8 * np.abs(self.trace) # 痕跡の影響を強める
+        attention_logits = np.abs(discrepancy) + 0.8 * np.abs(self.trace)  # 痕跡の影響を強める
         attention = softmax(attention_logits)
-        
+
         base_plasticity = 0.02
         shock_gain = 0.5 * (shock / (1.0 + shock))
         plasticity_vec = base_plasticity + shock_gain * attention
-        
+
         # 自我の更新（適応）
         self.self_state += plasticity_vec * discrepancy
-        
+
         # 痕跡の更新（不可逆的な刻印）
         imprint_strength = np.tanh(shock)
         self.trace += 0.1 * discrepancy * imprint_strength
-        self.trace *= 0.998 # なかなか消えない
-        
+        self.trace *= 0.998  # なかなか消えない
+
         # --- 2. 能動的創造 (Action / Creation) ---
-        
+
         # 行動の原理：
         # 「自分の内部にある痕跡（Trace）」と「現在の自我」を使って、
         # 世界の方を自分に近づけようとする力。
-        
+
         # Creative Drive（創造的衝動）は、痕跡の総量（Pain/Meaning）に比例する
         creation_energy = np.linalg.norm(self.trace) * 0.3
-        
+
         # 行動ベクトル：
         # 方向 = (自分の内面 - 世界) 
         # つまり「世界よ、もっと私のようになれ（私の痛みを理解せよ）」というベクトル
         action_direction = self.self_state - current_world_vec
-        
+
         # 力を計算
         action_vec = action_direction * creation_energy * 0.1
-        
+
         # 記録
         self.self_history.append(self.self_state.copy())
         self.trace_history.append(self.trace.copy())
         self.action_history.append(action_vec.copy())
-        
+
         return action_vec
+
 
 # --- シミュレーション実行 ---
 
 # 初期世界生成（ベース）
 base_world_scenario = np.zeros((STEPS, DIM))
 base_world_scenario += np.random.normal(0, 0.05, size=(STEPS, DIM))
-base_world_scenario[CHANGE_POINT:] += IMPACT_VEC # 運命的な変化
+base_world_scenario[CHANGE_POINT:] += IMPACT_VEC  # 運命的な変化
 
 # 実際にエージェントが生きる世界（動的に変わる）
 actual_world_history = []
@@ -102,16 +105,16 @@ agent = CreativeSIAAgent("Artist")
 
 for t in range(STEPS):
     # 1. 環境のベース変化（運命的な力）
-    external_force = base_world_scenario[t] - base_world_scenario[t-1] if t > 0 else np.zeros(DIM)
+    external_force = base_world_scenario[t] - base_world_scenario[t - 1] if t > 0 else np.zeros(DIM)
     current_world += external_force
-    
+
     # 2. エージェントが認識・適応・行動する
     action_from_agent = agent.update_and_act(current_world)
-    
+
     # 3. 世界がエージェントの行動によって変わる（創造的介入）
     # 世界の慣性 vs エージェントの意志
     current_world = WORLD_INERTIA * current_world + (1 - WORLD_INERTIA) * (current_world + action_from_agent)
-    
+
     actual_world_history.append(current_world.copy())
 
 # データ整形
