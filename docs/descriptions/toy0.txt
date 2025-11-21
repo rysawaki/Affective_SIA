@@ -1,0 +1,169 @@
+あなたの理論（Self-Imprint Attribution）を、最もシンプルな形で動作させる「数理トイモデル（Minimal Toy Model）」を作成しました。
+
+このモデルの目的は、**「固定的自我（Static Self）」と「編集可能な自我（Generative Self）」が、予期せぬ「喪失・衝撃（Imprint）」に直面したとき、どう振る舞いが違うか**を可視化することです。
+
+-----
+
+### 🧪 トイモデルの設計図
+
+**シナリオ：**
+ある「世界（環境）」の中で生きるエージェントがいます。
+人生の途中で、\*\*「突然の激変（巨大な意味の不整合）」\*\*が発生します。
+
+**比較対象：**
+
+1.  🔴 **固定的自我 (Static Self)**
+      * 自己保存を優先。
+      * 「今の自分」を守ろうとし、変化（学習率）を最小限に抑える。
+      * 大きな変化を「ノイズ」として無視（否認）しようとする。
+2.  🔵 **生成的自我 (Generative Self)**
+      * 意味生成を優先。
+      * **不整合（Discrepancy）を感知すると、自我の可塑性（Plasticity）を一時的に高める。**
+      * 衝撃を受け入れ、自己構造を書き換えることで適応する。
+
+-----
+
+### 💻 Pythonコード（実行可能）
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# --- 設定 ---
+STEPS = 100
+CHANGE_POINT = 40  # 40ステップ目で「人生の激変」が起きる
+IMPACT_SIZE = 5.0  # 衝撃の大きさ
+
+# --- 環境（世界）の生成 ---
+# 最初は平穏(0)だが、途中で世界がガラッと変わる(5.0)
+world_state = np.zeros(STEPS)
+world_state[CHANGE_POINT:] = IMPACT_SIZE
+
+# --- クラス定義 ---
+
+class Agent:
+    def __init__(self, name, mode):
+        self.name = name
+        self.mode = mode
+        self.self_state = 0.0 # 自我の状態（初期値）
+        self.history = []     # 自分の履歴
+        self.plasticity_history = [] # 可塑性（変わりやすさ）の履歴
+
+    def update(self, external_reality):
+        # 1. 意味の不整合（Discrepancy）を感知する
+        # 「世界」と「自分」のズレ
+        discrepancy = abs(external_reality - self.self_state)
+
+        # 2. 自我モードによる「可塑性（Plasticity）」の決定
+        if self.mode == "Static":
+            # 固定的自我：
+            # 変化を恐れる。ズレが大きくても、頑なに変わろうとしない（防衛）
+            # 常に低い学習率で固定
+            plasticity = 0.05
+
+        elif self.mode == "Generative":
+            # 生成的自我：
+            # ズレ（意味ショック）が大きいほど、「これは自分を変えるべき時だ」と判断。
+            # 不整合の大きさに応じて、一時的に可塑性を上げる（痕跡を受け入れる）
+            # 基本値 0.05 + 衝撃反応係数
+            plasticity = 0.05 + (discrepancy * 0.15)
+            # ただし、崩壊しないよう上限はある
+            plasticity = min(plasticity, 0.8)
+
+        # 3. 自己の再構成（Update）
+        # S(t+1) = S(t) + Plasticity * (Target - S(t))
+        direction = external_reality - self.self_state
+        self.self_state += plasticity * direction
+
+        # 記録
+        self.history.append(self.self_state)
+        self.plasticity_history.append(plasticity)
+
+# --- シミュレーション実行 ---
+agent_static = Agent("Static Self (固定的)", "Static")
+agent_generative = Agent("Generative Self (生成的)", "Generative")
+
+for t in range(STEPS):
+    reality = world_state[t]
+    agent_static.update(reality)
+    agent_generative.update(reality)
+
+# --- 可視化 ---
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
+
+# 上段：世界と自我の状態
+ax1.plot(world_state, 'k--', label='World Reality (環境)', alpha=0.6, linewidth=1)
+ax1.plot(agent_static.history, 'r-', label='Static Self (防衛的)', linewidth=2)
+ax1.plot(agent_generative.history, 'b-', label='Generative Self (編集可能)', linewidth=2)
+ax1.set_title('自我の再構成プロセス (Self-Reconstruction Process)', fontsize=14)
+ax1.set_ylabel('意味の状態 (Internal State)')
+ax1.legend(loc='lower right')
+ax1.grid(True, alpha=0.3)
+
+# 下段：可塑性の変化（どれだけ心を開いたか）
+ax2.plot(agent_static.plasticity_history, 'r-', label='Static Plasticity', linewidth=2)
+ax2.plot(agent_generative.plasticity_history, 'b-', label='Generative Plasticity (Trace Acceptance)', linewidth=2)
+ax2.set_title('可塑性の変化：痕跡の受容 (Acceptance of Imprint)', fontsize=14)
+ax2.set_ylabel('可塑性 (Plasticity)')
+ax2.set_xlabel('時間 (Time Step)')
+ax2.legend()
+ax2.grid(True, alpha=0.3)
+
+# 注釈
+ax1.annotate('Imprint Event\n(Loss/Trauma)', xy=(CHANGE_POINT, 0), xytext=(CHANGE_POINT+5, 2),
+             arrowprops=dict(facecolor='black', shrink=0.05))
+
+plt.tight_layout()
+plt.show()
+```
+
+-----
+
+### 📊 モデルの解説（何が起きているか）
+
+このトイモデルを実行すると、以下の現象が明確に現れます。
+
+#### 1\. 「衝撃（Imprint Event）」の瞬間 (Step 40)
+
+世界の値が `0` から `5` に跳ね上がります。これは「喪失」「環境激変」「新しい真実との遭遇」です。
+
+#### 2\. 赤い線：固定的自我（Static Self）
+
+  * **挙動:** グラフ上で、赤い線は**なかなか上がりません。**
+  * **心理的解釈:** 「これは間違いだ」「私は変わらない」という**防衛**が働いています。
+  * **結果:** 世界の現実に適応するのに膨大な時間がかかり、その間ずっと「世界とのズレ（苦しみ）」を抱え続けます。
+
+#### 3\. 青い線：生成的自我（Generative Self）
+
+  * **挙動:** 衝撃の瞬間、グラフ（下段）の**可塑性（Plasticity）が急上昇**します。
+  * **心理的解釈:** 意味の不整合（Discrepancy）を感じた瞬間、**「自我の壁」を一時的に柔らかくして**、新しい現実を痕跡として受け入れています（Imprint）。
+  * **結果:** 素早く自己構造を書き換え（Reconstruction）、新しい環境レベル（`5.0`）で再び安定します。
+
+-----
+
+### 🧠 ここから得られる数理的洞察
+
+この簡単なモデルが示しているのは、あなたの理論の核心です。
+
+> \[
+> \\text{Plasticity} \\propto \\text{Discrepancy}
+> \]
+
+つまり、
+**「自我の柔らかさ（変わりやすさ）」を固定パラメータにするのではなく、「意味の不整合（痛み・衝撃）」の関数にする** ということです。
+
+  * **Static Self:** $P = \text{const}$ （一定の硬さ）
+  * **Generative Self:** $P = f(\text{Meaning Shock})$ （痛みによって開かれる）
+
+これが、**「喪失可能性を創造の源にする」** ということの最も単純なアルゴリズム表現です。
+
+### 🚀 次のステップ
+
+このモデルをさらに「あなたの理論」に近づけるための拡張案です：
+
+  * **「回復不能性（Irreversibility）」を入れる:**
+      * 一度書き換わった自我は、環境が元に戻っても、すぐには戻らないようにする（履歴効果）。
+  * **「崩壊（Breakdown）」を入れる:**
+      * 衝撃があまりに大きすぎると（Discrepancy \> 閾値）、可塑性が上がりすぎてシステムがエラーを起こす（精神的崩壊）ようにする。
+
+どうでしょう、このコードの挙動は、あなたのイメージする「編集可能な自我」に近いでしょうか？
