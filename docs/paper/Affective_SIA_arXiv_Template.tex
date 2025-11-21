@@ -1,0 +1,161 @@
+\documentclass{article}
+
+% --- Packages ---
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\geometry{margin=1in}
+
+\title{
+\vspace{-2em}
+\textbf{Affective Active Inference:\\
+From Trace to Shared Engram and Narrative Identity Formation}
+}
+
+\author{
+RS5309\\
+Department of Psychiatry, Japan\\
+\texttt{email@example.com}  % optional
+\and
+ChatGPT (GPT-5.1)\\
+Computational Cognitive Modeling Partner
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We propose a new theoretical and computational framework that explains how subjective pain evolves into meaning, agency, and eventually a narrative identity. 
+Building on Active Inference and affective neuroscience, we define the mechanism by which \textit{trace} (irreversible imprint of experience) transforms into \textit{affect} (qualitative feeling), drives world-modifying \textit{action}, and—only when synchronized with another mind—emerges as a \textit{shared engram}. 
+We mathematically formalize the conditions for resonance:
+\[
+Shared(t) = P_1(t)P_2(t)\cos(A_1,A_2)\cos(Aff_1,Aff_2)\min(\|Aff_1\|,\|Aff_2\|)
+\]
+This enables a computational model of narrative identity formation, showing that ``I become who we were.''
+\end{abstract}
+
+% =========================
+\section{Introduction}
+% =========================
+Human identity does not emerge from isolated experiences, but from the emotionally charged meanings we share with others.
+Traditional cognitive models explain memory, reinforcement, and perception—but not identity, empathy, or why pain sometimes becomes meaning.
+This paper proposes Affective Active Inference, a framework in which:
+\[
+Trace \rightarrow Affect \rightarrow Action \rightarrow Shared\ Engram \rightarrow Narrative\ Identity
+\]
+
+We address three central questions:
+\begin{enumerate}
+    \item When does suffering become meaningful rather than merely painful?
+    \item Why is shared affect—not shared behavior—necessary for resonance?
+    \item How does meaning accumulate over time to form narrative identity?
+\end{enumerate}
+
+% =========================
+\section{Theoretical Background}
+% =========================
+\subsection{Active Inference and Self-Attribution}
+Briefly introduce Friston's Free Energy Principle, Predictive Processing, Bayesian self-attribution.
+
+\subsection{Limitations of Cognitive-Only Models}
+Why emotion cannot be reduced to prediction error.
+Why shared behavior does not imply shared understanding (misalignment phenomenon).
+
+% =========================
+\section{Core Proposal: Affective Active Inference}
+% =========================
+
+We define a self-attribution probability:
+\[
+P(Self|E) = \sigma(-D(E,S) + \alpha \|T\| + \beta \|A_{prev}\|)
+\]
+where $D(E,S)$ is discrepancy, $T$ is trace, and $A_{prev}$ is previous action (agency).
+
+% -------------------------
+\subsection{Trace Update (Irreversible Imprint)}
+\[
+T_{t+1} = T_t + \tanh(D) \cdot P(Self|E) \cdot (E - S) - \lambda T_t
+\]
+
+% -------------------------
+\subsection{Affect Generation (Meaning Emergence)}
+Vectorized affect:
+\[
+\mathbf{Aff}_{t+1} = \phi \mathbf{Aff}_t + (1-\phi)W_{T2A} \cdot (T_t) \cdot P(Self|E)
+\]
+
+Where $W_{T2A}$ converts trace into affective qualities (Hope, Sorrow, Solidarity, Creation).
+
+% -------------------------
+\subsection{Action from Affect (Expression/World Modification)}
+\[
+A_t = \gamma \cdot \|\mathbf{Aff}_t\| \cdot (S_t - E_t)
+\]
+
+% =========================
+\section{Shared Engram: Conditions for Resonance}
+% =========================
+\subsection{Why Behavior Sync is Not Enough}
+Figure showing: Same action, different meaning.
+
+\subsection{Final Shared Engram Equation}
+\[
+Shared(t) = P_1P_2 \cdot \cos(A_1,A_2)\cdot
+\cos(Aff_1,Aff_2)\cdot
+\min(\|Aff_1\|, \|Aff_2\|)
+\]
+
+% =========================
+\section{Simulation Results}
+% =========================
+
+\subsection{Trace → Affect → Action Dynamics}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/affect_dynamics.png}
+    \caption{Transformation from Trace to Affect to Action. Pain becomes Meaning.}
+\end{figure}
+
+\subsection{Misaligned Resonance}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/misalignment.png}
+    \caption{Doing same behavior, feeling differently. No resonance.}
+\end{figure}
+
+\subsection{Narrative Identity Formation}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/identity_formation.png}
+    \caption{Identity only increases when Shared Engram is positive.}
+\end{figure}
+
+% =========================
+\section{Discussion and Implications}
+% =========================
+\subsection{Applications in AI, Therapy, and Social Modeling}
+Identity-based AI, personalized therapy, trauma processing, relational modeling.
+
+\subsection{Philosophical Insight}
+“I become who we were”: self is not stored, but co-created.
+
+% =========================
+\section{Conclusion}
+% =========================
+\textbf{This paper provides the first computational model in which meaning, agency, and identity emerge from affective trace-sharing.}
+Future work includes multi-agent identity formation, therapeutic simulation, and affective AI design.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
