@@ -1,161 +1,144 @@
-\documentclass{article}
+\documentclass[11pt, a4paper]{article}
+
+% --- UNIVERSAL PREAMBLE BLOCK ---
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Sans}
 
 % --- Packages ---
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{bm}
-\usepackage{geometry}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{physics}
-\usepackage{mathtools}
 \usepackage{booktabs}
-\usepackage{multirow}
+\usepackage{float}
 
-\geometry{margin=1in}
+% --- Page Setup ---
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
 
+% --- Meta Data ---
 \title{
-\vspace{-2em}
-\textbf{Affective Active Inference:\\
-From Trace to Shared Engram and Narrative Identity Formation}
+    \textbf{Affective Active Inference: \\
+    From Trace to Shared Engram and Narrative Identity Formation}
 }
 
 \author{
-RS5309\\
-Department of Psychiatry, Japan\\
-\texttt{email@example.com}  % optional
-\and
-ChatGPT (GPT-5.1)\\
-Computational Cognitive Modeling Partner
+    Ryota Sawaki \\
+    \textit{Department of Computational Psychiatry} \\
+    \texttt{ryota.sawaki@example.com}
 }
 
-\date{}
+\date{\today}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We propose a new theoretical and computational framework that explains how subjective pain evolves into meaning, agency, and eventually a narrative identity. 
-Building on Active Inference and affective neuroscience, we define the mechanism by which \textit{trace} (irreversible imprint of experience) transforms into \textit{affect} (qualitative feeling), drives world-modifying \textit{action}, and—only when synchronized with another mind—emerges as a \textit{shared engram}. 
-We mathematically formalize the conditions for resonance:
-\[
-Shared(t) = P_1(t)P_2(t)\cos(A_1,A_2)\cos(Aff_1,Aff_2)\min(\|Aff_1\|,\|Aff_2\|)
-\]
-This enables a computational model of narrative identity formation, showing that ``I become who we were.''
+Human identity does not emerge from isolated optimization but from the accumulation of shared affective meanings. We propose the \textbf{Self-Imprint Attribution (SIA)} model, a computational framework that integrates Active Inference with affective dynamics. Unlike traditional models that minimize prediction errors instantaneously, SIA posits that errors are retained as \textit{Trace}, transformed into vectorized \textit{Affect}, and expressed through \textit{Creative Action}. We demonstrate that narrative identity ($I$) emerges only when these affective vectors synchronize between agents, forming a \textit{Shared Engram}. Furthermore, our sensitivity analysis reveals a paradoxical insight: agents with higher sensitivity to trauma ($\alpha$) form significantly stronger identities, suggesting that vulnerability is a prerequisite for robust social resilience.
 \end{abstract}
 
 % =========================
 \section{Introduction}
 % =========================
-Human identity does not emerge from isolated experiences, but from the emotionally charged meanings we share with others.
-Traditional cognitive models explain memory, reinforcement, and perception—but not identity, empathy, or why pain sometimes becomes meaning.
-This paper proposes Affective Active Inference, a framework in which:
-\[
-Trace \rightarrow Affect \rightarrow Action \rightarrow Shared\ Engram \rightarrow Narrative\ Identity
-\]
+Why do we hold onto painful memories? In standard Reinforcement Learning (RL) and Active Inference, prediction errors (surprisal) are costs to be minimized or ignored once learning is complete. However, in human psychology, unresolved errors often form the core of one's personality—a phenomenon known as trauma or core belief.
 
-We address three central questions:
+We propose that these errors are not waste products but the raw material of identity. We introduce \textbf{Affective Active Inference}, where:
 \begin{enumerate}
-    \item When does suffering become meaningful rather than merely painful?
-    \item Why is shared affect—not shared behavior—necessary for resonance?
-    \item How does meaning accumulate over time to form narrative identity?
+    \item \textbf{Trace:} Discrepancies are imprinted physically.
+    \item \textbf{Affect:} Traces are interpreted into qualitative vectors (e.g., Sorrow, Hope).
+    \item \textbf{Identity:} These vectors are integrated over time through shared resonance.
 \end{enumerate}
 
 % =========================
-\section{Theoretical Background}
+\section{Computational Model}
 % =========================
-\subsection{Active Inference and Self-Attribution}
-Briefly introduce Friston's Free Energy Principle, Predictive Processing, Bayesian self-attribution.
+The SIA agent operates on a cycle of five phases. The core mechanism is the \textit{Attribution Gate}, which determines ownership of experience.
 
-\subsection{Limitations of Cognitive-Only Models}
-Why emotion cannot be reduced to prediction error.
-Why shared behavior does not imply shared understanding (misalignment phenomenon).
+\subsection{Self-Attribution and Trace}
+The probability that an experience $E$ belongs to the self, $P(Self|E)$, is defined by:
+\begin{equation}
+    P(Self|E) = \sigma \left( -\|E - S\| + \alpha \|T\| + \beta \|Act_{prev}\| \right)
+\end{equation}
+where $T$ is the accumulated trace, and $\alpha$ is the \textbf{Trace Sensitivity} parameter. A higher $\alpha$ implies that the agent is more likely to attribute painful discrepancies to itself (internalization).
 
-% =========================
-\section{Core Proposal: Affective Active Inference}
-% =========================
-
-We define a self-attribution probability:
-\[
-P(Self|E) = \sigma(-D(E,S) + \alpha \|T\| + \beta \|A_{prev}\|)
-\]
-where $D(E,S)$ is discrepancy, $T$ is trace, and $A_{prev}$ is previous action (agency).
-
-% -------------------------
-\subsection{Trace Update (Irreversible Imprint)}
-\[
-T_{t+1} = T_t + \tanh(D) \cdot P(Self|E) \cdot (E - S) - \lambda T_t
-\]
-
-% -------------------------
-\subsection{Affect Generation (Meaning Emergence)}
-Vectorized affect:
-\[
-\mathbf{Aff}_{t+1} = \phi \mathbf{Aff}_t + (1-\phi)W_{T2A} \cdot (T_t) \cdot P(Self|E)
-\]
-
-Where $W_{T2A}$ converts trace into affective qualities (Hope, Sorrow, Solidarity, Creation).
-
-% -------------------------
-\subsection{Action from Affect (Expression/World Modification)}
-\[
-A_t = \gamma \cdot \|\mathbf{Aff}_t\| \cdot (S_t - E_t)
-\]
-
-% =========================
-\section{Shared Engram: Conditions for Resonance}
-% =========================
-\subsection{Why Behavior Sync is Not Enough}
-Figure showing: Same action, different meaning.
-
-\subsection{Final Shared Engram Equation}
-\[
-Shared(t) = P_1P_2 \cdot \cos(A_1,A_2)\cdot
-\cos(Aff_1,Aff_2)\cdot
-\min(\|Aff_1\|, \|Aff_2\|)
-\]
+\subsection{Identity Integration via Shared Resonance}
+Identity $I(t)$ is not a static variable but a historical integral. It grows only when a \textit{Shared Engram} is formed with another agent:
+\begin{equation}
+    I(t+1) = I(t) + \eta \cdot \text{Shared}(t) \cdot \mathbf{A}(t)
+\end{equation}
+where $\mathbf{A}(t)$ is the affective vector. The shared resonance is strictly defined as:
+\begin{equation}
+    \text{Shared}(t) = P_1 P_2 \cdot \cos(\theta_{act}) \cdot \cos(\theta_{aff}) \cdot \min(\|\mathbf{A}_1\|, \|\mathbf{A}_2\|)
+\end{equation}
+This ensures that identity is formed only when both agents share both the \textit{direction of action} and the \textit{quality of affect}.
 
 % =========================
 \section{Simulation Results}
 % =========================
+We conducted two experiments to validate the theory.
 
-\subsection{Trace → Affect → Action Dynamics}
-\begin{figure}[h]
+\subsection{Dynamics of Narrative Identity Formation}
+Figure \ref{fig:identity} illustrates the time evolution of an agent interacting with a partner after a traumatic event ($t=50$).
+\begin{itemize}
+    \item \textbf{Phase 1 (Trauma):} The agent experiences a shock, generating a large Trace.
+    \item \textbf{Phase 2 (Genesis):} The trace is converted into Affect (Meaning).
+    \item \textbf{Phase 3 (Resonance):} Upon encountering a partner ($t=100$), the Shared Engram (Green area) emerges.
+    \item \textbf{Result:} The Identity ($I$, Black line) begins to accumulate only after resonance occurs, supporting the hypothesis: ``I become who we were.''
+\end{itemize}
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/affect_dynamics.png}
-    \caption{Transformation from Trace to Affect to Action. Pain becomes Meaning.}
+    % Placeholder for compilation in this environment.
+    % For local use, uncomment the \includegraphics line and comment out the \framebox block.
+    \framebox{\parbox{0.85\textwidth}{\centering
+        \vspace{3cm}
+        \textbf{Figure 1: Narrative Identity Formation} \\
+        \small\textit{[Place 'identity\_formation.png' here]} \\
+        \small\textit{Identity grows only during shared resonance.}
+        \vspace{3cm}
+    }}
+    % \includegraphics[width=0.85\textwidth]{identity_formation.png}
+    \caption{Simulation of Narrative Identity Formation. The Identity (bottom panel) grows only when Shared Resonance (middle panel, green) is active.}
+    \label{fig:identity}
 \end{figure}
 
-\subsection{Misaligned Resonance}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/misalignment.png}
-    \caption{Doing same behavior, feeling differently. No resonance.}
-\end{figure}
+\subsection{Sensitivity Analysis: The Paradox of Vulnerability}
+To investigate the role of individual differences, we performed a parameter sweep on Trace Sensitivity $\alpha$ ($0.1 \leq \alpha \leq 2.0$).
+As shown in Figure \ref{fig:sensitivity}, there is a strong positive correlation between $\alpha$ and the final magnitude of Identity.
 
-\subsection{Narrative Identity Formation}
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/identity_formation.png}
-    \caption{Identity only increases when Shared Engram is positive.}
+    % Placeholder for compilation in this environment.
+    % For local use, uncomment the \includegraphics line and comment out the \framebox block.
+    \framebox{\parbox{0.7\textwidth}{\centering
+        \vspace{3cm}
+        \textbf{Figure 2: Sensitivity Analysis} \\
+        \small\textit{[Place 'sensitivity\_analysis.png' here]} \\
+        \small\textit{Higher sensitivity ($\alpha$) leads to stronger identity.}
+        \vspace{3cm}
+    }}
+    % \includegraphics[width=0.7\textwidth]{sensitivity_analysis.png}
+    \caption{Sensitivity Analysis. Agents with higher sensitivity to trace ($\alpha$) form stronger identities. Vulnerability fosters resilience.}
+    \label{fig:sensitivity}
 \end{figure}
 
 % =========================
-\section{Discussion and Implications}
+\section{Discussion}
 % =========================
-\subsection{Applications in AI, Therapy, and Social Modeling}
-Identity-based AI, personalized therapy, trauma processing, relational modeling.
+The results present a counter-intuitive insight: \textbf{Vulnerability is Strength.}
+Agents that easily ignore traces ($\alpha \approx 0$) minimize immediate costs but fail to accumulate the affective resources necessary for deep social resonance. Conversely, agents that retain traces ($\alpha > 1.0$) suffer more initially but use that suffering as fuel for creative action and identity formation.
 
-\subsection{Philosophical Insight}
-“I become who we were”: self is not stored, but co-created.
+This suggests that in the context of General Intelligence, "forgetting" is not always optimal. The ability to be scarred (Imprint) is the engine of becoming someone (Identity).
 
 % =========================
 \section{Conclusion}
 % =========================
-\textbf{This paper provides the first computational model in which meaning, agency, and identity emerge from affective trace-sharing.}
-Future work includes multi-agent identity formation, therapeutic simulation, and affective AI design.
+We demonstrated that Narrative Identity can be computationally modeled as an integral of shared affective history. The SIA model provides a new mathematical bridge between clinical concepts of trauma and engineering concepts of AGI.
 
-\bibliographystyle{plain}
-\bibliography{references}
 \end{document}
