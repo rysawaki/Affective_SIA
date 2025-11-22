@@ -40,8 +40,8 @@ Affective_SIA/
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/SIA-Generative-Identity.git](https://github.com/YOUR_USERNAME/SIA-Generative-Identity.git)
-   cd SIA-Generative-Identity
+   git clone [https://github.com/rysawaki/Affective_SIA.git](https://github.com/rysawaki/Affective_SIA.git)
+   cd Affective_SIA
    ```
 
 2. Install dependencies:
