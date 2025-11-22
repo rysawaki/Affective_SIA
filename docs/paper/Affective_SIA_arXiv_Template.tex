@@ -31,27 +31,50 @@
 \author{
     Ryota Sawaki \\
     \textit{Department of Computational Psychiatry} \\
-    \texttt{ryota.sawaki@example.com}
+    \texttt{rysawaki@gmail.com}
 }
 
 \date{\today}
+
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,       
+    linkcolor=blue,        
+    citecolor=blue,        
+    urlcolor=blue,        
+    pdftitle={SIA Model},  
+    pdfauthor={Ryota Sawaki} 
+}
+
+% ---  ---
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Human identity does not emerge from isolated optimization but from the accumulation of shared affective meanings. We propose the \textbf{Self-Imprint Attribution (SIA)} model, a computational framework that integrates Active Inference with affective dynamics. Unlike traditional models that minimize prediction errors instantaneously, SIA posits that errors are retained as \textit{Trace}, transformed into vectorized \textit{Affect}, and expressed through \textit{Creative Action}. We demonstrate that narrative identity ($I$) emerges only when these affective vectors synchronize between agents, forming a \textit{Shared Engram}. Furthermore, our sensitivity analysis reveals a paradoxical insight: agents with higher sensitivity to trauma ($\alpha$) form significantly stronger identities, suggesting that vulnerability is a prerequisite for robust social resilience.
+Human identity does not emerge from isolated perception–action cycles but from accumulated affective experiences that shape long-term self–other attribution. We propose the Self-Imprint Attribution (SIA) model, an extension of Active Inference that transforms prediction errors into imprint traces, which progressively evolve into vectorized affective states. These affect vectors modulate future policy selection, enabling the emergence of narrative identity beyond instantaneous error minimization.
+
+We conducted multi-agent simulations in a dyadic affective meaning exchange task within a continuous embedding space, where agents share signals representing interpretation, affect, and action. We show that Shared Engram—a distributed memory structure—emerges only when three conditions are simultaneously satisfied:
+(1) synchronized affective depth,
+(2) aligned action direction, and
+(3) mutual self-attribution confidence.
+
+Crucially, sensitivity analysis reveals that agents with high trace sensitivity (α=2.0) develop identities approximately 5× stronger than agents with α=0.1, demonstrating that computational vulnerability is not a flaw but a prerequisite for identity formation and social resilience.
+
+These results provide the first computational account of how affective resonance gives rise to narrative identity within an Active Inference framework, suggesting new directions for affective AI, trauma modeling, and interactive AGI architectures.
 \end{abstract}
 
+\textbf{Code Availability:} The simulation code and data specifically used to generate the results presented in this study are available at \url{https://github.com/rysawaki/Affective_SIA}.
 % =========================
 \section{Introduction}
 % =========================
-Why do we hold onto painful memories? In standard Reinforcement Learning (RL) and Active Inference, prediction errors (surprisal) are costs to be minimized or ignored once learning is complete. However, in human psychology, unresolved errors often form the core of one's personality—a phenomenon known as trauma or core belief.
+Why do we hold onto painful memories? In standard Reinforcement Learning (RL) and Active Inference, prediction errors (surprisal) are costs to be minimized or ignored once learning is complete \cite{parr2019generalised}. However, in human psychology, unresolved errors often form the core of one's personality—a phenomenon known as trauma or core belief \cite{vanderkolk2014body}.
 
-We propose that these errors are not waste products but the raw material of identity. We introduce \textbf{Affective Active Inference}, where:
+We propose that these errors are not waste products but the raw material of identity. Drawing on theories of narrative identity \cite{mcadams2001psychology, ricoeur1991narrative} and interoceptive inference \cite{seth2013interoceptive}, we introduce \textbf{Affective Active Inference}, where:
 \begin{enumerate}
-    \item \textbf{Trace:} Discrepancies are imprinted physically.
-    \item \textbf{Affect:} Traces are interpreted into qualitative vectors (e.g., Sorrow, Hope).
+    \item \textbf{Trace:} Discrepancies are imprinted physically \cite{vanderkolk2014body}.
+    \item \textbf{Affect:} Traces are interpreted into qualitative vectors (e.g., Sorrow, Hope) \cite{damasio1999feeling}.
     \item \textbf{Identity:} These vectors are integrated over time through shared resonance.
 \end{enumerate}
 
@@ -94,16 +117,8 @@ Figure \ref{fig:identity} illustrates the time evolution of an agent interacting
 
 \begin{figure}[H]
     \centering
-    % Placeholder for compilation in this environment.
-    % For local use, uncomment the \includegraphics line and comment out the \framebox block.
-    \framebox{\parbox{0.85\textwidth}{\centering
-        \vspace{3cm}
-        \textbf{Figure 1: Narrative Identity Formation} \\
-        \small\textit{[Place 'identity\_formation.png' here]} \\
-        \small\textit{Identity grows only during shared resonance.}
-        \vspace{3cm}
-    }}
-    % \includegraphics[width=0.85\textwidth]{identity_formation.png}
+    % Ensure identity_formation.png is present in the same directory
+    \includegraphics[width=0.85\textwidth]{identity_formation.png}
     \caption{Simulation of Narrative Identity Formation. The Identity (bottom panel) grows only when Shared Resonance (middle panel, green) is active.}
     \label{fig:identity}
 \end{figure}
@@ -114,16 +129,8 @@ As shown in Figure \ref{fig:sensitivity}, there is a strong positive correlation
 
 \begin{figure}[H]
     \centering
-    % Placeholder for compilation in this environment.
-    % For local use, uncomment the \includegraphics line and comment out the \framebox block.
-    \framebox{\parbox{0.7\textwidth}{\centering
-        \vspace{3cm}
-        \textbf{Figure 2: Sensitivity Analysis} \\
-        \small\textit{[Place 'sensitivity\_analysis.png' here]} \\
-        \small\textit{Higher sensitivity ($\alpha$) leads to stronger identity.}
-        \vspace{3cm}
-    }}
-    % \includegraphics[width=0.7\textwidth]{sensitivity_analysis.png}
+    % Ensure sensitivity_analysis.png is present in the same directory
+    \includegraphics[width=0.7\textwidth]{sensitivity_analysis.png}
     \caption{Sensitivity Analysis. Agents with higher sensitivity to trace ($\alpha$) form stronger identities. Vulnerability fosters resilience.}
     \label{fig:sensitivity}
 \end{figure}
@@ -139,6 +146,22 @@ This suggests that in the context of General Intelligence, "forgetting" is not a
 % =========================
 \section{Conclusion}
 % =========================
-We demonstrated that Narrative Identity can be computationally modeled as an integral of shared affective history. The SIA model provides a new mathematical bridge between clinical concepts of trauma and engineering concepts of AGI.
+We demonstrated that Narrative Identity can be computationally modeled as an integral of shared affective history. The SIA model provides a new mathematical bridge between clinical concepts of trauma and engineering concepts of AGI \cite{parr2019generalised, vanderkolk2014body}.
 
-\end{document}
+% --- Bibliography ---
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+
+\end{document}\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{identity_formation.png}
+    \caption{Enter Caption}
+\begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{sensitivity_analysis.png}
+        \caption{Enter Caption}
+        \label{fig:placeholder}
+    \end{figure}
+        \label{fig:placeholder}
+\end{figure}
