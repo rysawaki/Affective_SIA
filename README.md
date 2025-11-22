@@ -10,7 +10,7 @@ This repository contains the reference implementation of the **Self-Imprint Attr
 
 The core hypothesis is that subjective pain (Trace) evolves into meaning (Affect), drives world-modifying behavior (Action), and—only when synchronized with another mind—emerges as a Narrative Identity.
 
-📄 **Read the Paper (Draft):** [Affective_SIA_preprint.pdf](./docs/paper/Affective_SIA_preprint.pdf)
+📄 **Read the Paper (Draft):** [Affective_SIA_draft.pdf](./docs/paper/Affective_SIA_draft.pdf)
 
 ![Identity Formation Process](results/figures/identity_formation.png)
 *Figure: The emergence of narrative identity through shared affective resonance.*
