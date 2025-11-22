@@ -9,12 +9,13 @@ This experiment investigates the relationship between an agent's "vulnerability"
     * **High $\alpha$ (2.0):** "Sensitive" or "Vulnerable" agent. Retains prediction errors as deep traces; highly responsive to discrepancies.
 * **Metric:** The final magnitude of the accumulated Identity vector ($||I_{final}||$) after 300 time steps.
 * **Scenario:** Same as Experiment 05 (Trauma $\to$ Interaction).
+* **Statistical Validation:** Each parameter setting is tested with $N=10$ trials using different random seeds to ensure robustness. Error bars represent standard deviation (SD).
 
 ## 2. Hypothesis
 
 Standard reinforcement learning suggests that minimizing cost (error/pain) is optimal. Therefore, one might hypothesize that agents with low $\alpha$ (who minimize error efficiently) would perform "better."
 
- However, the SIA model posits the opposite:
+However, the SIA model posits the opposite:
 > **Hypothesis:** Higher sensitivity ($\alpha$) leads to stronger Identity formation, because Identity is fueled by the shared processing of Traces.
 
 ## 3. Results & Analysis
@@ -29,6 +30,9 @@ The simulation results (see figure above) reveal a robust **positive correlation
 
 2.  **Quantitative Impact:**
     * As shown in the graph, increasing $\alpha$ from 0.1 to 2.0 results in an approximately **5-fold increase** in final Identity strength.
+
+3.  **Variance and Diversity:**
+    * The error bars indicate that higher sensitivity also leads to higher variance. This suggests a **high-risk, high-reward** dynamic: sensitive agents have the potential for profound identity formation but are also subject to greater instability depending on the interaction quality.
 
 ## 4. Conclusion: Vulnerability is Strength
 
