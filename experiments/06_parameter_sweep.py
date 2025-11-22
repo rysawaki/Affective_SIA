@@ -65,8 +65,6 @@ plt.ylabel("Final Identity Magnitude")
 plt.grid(True, alpha=0.3)
 
 # Save Figure
-os.makedirs('results/figures', exist_ok=True)
-plt.savefig('results/figures/sensitivity_analysis.png', dpi=300)
+os.makedirs('../results/figures', exist_ok=True)
+plt.savefig('../results/figures/sensitivity_analysis.png', dpi=300)
 print("Figure saved to results/figures/sensitivity_analysis.png")
-
-plt.show()

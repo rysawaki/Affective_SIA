@@ -209,8 +209,8 @@ axes[2].grid(alpha=0.3)
 plt.tight_layout()
 
 # Save Figure
-os.makedirs('results/figures', exist_ok=True)
-plt.savefig('results/figures/passive_adaptation.png', dpi=300)
+os.makedirs('../results/figures', exist_ok=True)
+plt.savefig('../results/figures/passive_adaptation.png', dpi=300)
 print("Figure saved to results/figures/passive_adaptation.png")
 
 plt.show()

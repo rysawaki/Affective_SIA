@@ -240,7 +240,7 @@ ax3.grid(True, alpha=0.3)
 plt.tight_layout()
 
 # Save figure
-os.makedirs('results/figures', exist_ok=True)
-plt.savefig('results/figures/interpersonal_resonance.png', dpi=300)
+os.makedirs('../results/figures', exist_ok=True)
+plt.savefig('../results/figures/interpersonal_resonance.png', dpi=300)
 
 plt.show()

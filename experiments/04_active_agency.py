@@ -225,7 +225,7 @@ ax3.grid(True, alpha=0.3)
 ax3.text(160, 0.1, "True Resonance requires\nShared Affective Depth", color='green')
 
 # Save figure
-os.makedirs('results/figures', exist_ok=True)
-plt.savefig('results/figures/active_agency.png', dpi=300)
+os.makedirs('../results/figures', exist_ok=True)
+plt.savefig('../results/figures/active_agency.png', dpi=300)
 
 plt.show()

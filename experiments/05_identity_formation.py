@@ -87,6 +87,6 @@ plot_identity_simulation(agent_A, resonance_components, shared_engram_history, c
 
 # Save Figure explicitly for README
 # Note: Ensure plt.show() is removed from visualization.py or called AFTER this.
-os.makedirs('results/figures', exist_ok=True)
-plt.savefig('results/figures/identity_formation.png', dpi=300)
+os.makedirs('../results/figures', exist_ok=True)
+plt.savefig('../results/figures/identity_formation.png', dpi=300)
 print("Figure saved to results/figures/identity_formation.png")
