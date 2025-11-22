@@ -26,7 +26,7 @@ $$\vec{A} = k \cdot E_{creation} \cdot (S - W)$$
 
 ## 3. Results & Analysis
 
-![Creative Action Result](../results/figures/creative_action.png)
+![Creative Action Result](../../results/figures/creative_action.png)
 
 The simulation results demonstrate three critical dynamics:
 

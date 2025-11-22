@@ -27,4 +27,4 @@ This implies that **mutual vulnerability** (high $P_{self}$) is a prerequisite f
 
 ## 3. Results & Analysis
 
-![Interpersonal Resonance](../results/figures/interpersonal_resonance.png)
+![Interpersonal Resonance](../../results/figures/interpersonal_resonance.png)

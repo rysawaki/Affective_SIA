@@ -30,7 +30,7 @@ $$I(t) = \int_{0}^{t} \eta \cdot \text{Shared}(\tau) \cdot \mathbf{A}(\tau) \, d
 
 ## 2. Results & Analysis
 
-![Identity Formation](../results/figures/identity_formation.png)
+![Identity Formation](../../results/figures/identity_formation.png)
 
 The simulation results (see figure above) illustrate the genesis of a "We-Identity":
 

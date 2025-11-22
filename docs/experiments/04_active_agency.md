@@ -30,7 +30,7 @@ $$\text{Resonance} = P_1 P_2 \cdot \underbrace{\cos(\vec{A}_1, \vec{A}_2)}_{\tex
 
 ## 3. Results & Analysis
 
-![Active Agency Result](../results/figures/active_agency.png)
+![Active Agency Result](../../results/figures/active_agency.png)
 
 The simulation results (see figure above) reveal the emergence of the **Action-Perception Loop**:
 

@@ -40,7 +40,7 @@ $$\Delta T \propto \tanh(|Shock|) \cdot Discrepancy$$
 
 ## 3. Results & Analysis
 
-![Passive Adaptation Result](../results/figures/passive_adaptation.png)
+![Passive Adaptation Result](../../results/figures/passive_adaptation.png)
 
 The simulation results (see figure above) highlight three key phenomena:
 
