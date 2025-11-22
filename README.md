@@ -10,6 +10,9 @@ This repository contains the reference implementation of the **Self-Imprint Attr
 
 The core hypothesis is that subjective pain (Trace) evolves into meaning (Affect), drives world-modifying behavior (Action), and—only when synchronized with another mind—emerges as a Narrative Identity.
 
+![Identity Formation Process](results/figures/identity_formation.png)
+*Figure: The emergence of narrative identity through shared affective resonance.*
+
 ## Repository Structure
 
 The project is organized to separate the core theoretical logic from specific experimental scenarios.
@@ -46,7 +49,7 @@ Affective_SIA/
 
 2. Install dependencies:
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements.txt .
    ```
    *(Requires `numpy` and `matplotlib`)*
 
