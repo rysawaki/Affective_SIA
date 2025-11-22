@@ -68,3 +68,5 @@ plt.grid(True, alpha=0.3)
 os.makedirs('../results/figures', exist_ok=True)
 plt.savefig('../results/figures/sensitivity_analysis.png', dpi=300)
 print("Figure saved to results/figures/sensitivity_analysis.png")
+
+plt.show()

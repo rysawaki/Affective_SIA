@@ -90,3 +90,5 @@ plot_identity_simulation(agent_A, resonance_components, shared_engram_history, c
 os.makedirs('../results/figures', exist_ok=True)
 plt.savefig('../results/figures/identity_formation.png', dpi=300)
 print("Figure saved to results/figures/identity_formation.png")
+
+plt.show()

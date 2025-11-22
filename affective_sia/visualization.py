@@ -85,4 +85,3 @@ def plot_identity_simulation(agent, resonance_history, shared_engram_history, co
              fontweight='bold')
 
     plt.tight_layout()
-    plt.show()
