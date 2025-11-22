@@ -19,24 +19,46 @@ The project is organized to separate the core theoretical logic from specific ex
 
 ```text
 Affective_SIA/
-├── affective_sia/             # Core Library Package
-│   ├── core.py                # Mathematical functions (Sigmoid, Attribution Gate, etc.)
-│   ├── agents.py              # Agent definitions (Identity_SIA_Agent)
-│   ├── config.py              # Simulation parameters and settings
-│   └── visualization.py       # Plotting and rendering logic
+├── affective_sia/                 # Core Library Package
+│   ├── __init__.py
+│   ├── agents.py                  # Agent definitions (Identity_SIA_Agent)
+│   ├── config.py                  # Simulation parameters
+│   ├── core.py                    # Mathematical functions
+│   └── visualization.py           # Plotting logic
 │
-├── experiments/               # Experiment Scripts (Reproducible Research)
-│   ├── 01_passive_adaptation.py       # Phase 1: Trace Accumulation & Plasticity
-│   ├── 02_creative_action.py          # Phase 2: Pain-driven Creative Action
-│   ├── 03_interpersonal_resonance.py  # Phase 3: Emergence of Shared Engram
-│   ├── 04_active_agency.py            # Phase 4: Agency Boost & Self-Recovery
-│   └── 05_identity_formation.py       # Phase 5: Full Narrative Identity Model (Paper Figure 4)
+├── docs/                          # Documentation
+│   ├── experiments/               # Experiment descriptions
+│   │   ├── 01_passive_adaptation.md
+│   │   ├── 02_creative_action.md
+│   │   ├── 03_interpersonal_resonance.md
+│   │   ├── 04_active_agency.md
+│   │   ├── 05_identity_formation.md
+│   │   └── 06_parameter_sweep.md
+│   └── paper/                     # LaTeX source
+│       └── Affective_SIA_arXiv_Template.tex
 │
-├── docs/                      # Documentation
-│   └── descriptions/          # Detailed explanation of each experiment
+├── experiments/                   # Reproducible Scripts
+│   ├── 01_passive_adaptation.py
+│   ├── 02_creative_action.py
+│   ├── 03_interpersonal_resonance.py
+│   ├── 04_active_agency.py
+│   ├── 05_identity_formation.py
+│   └── 06_parameter_sweep.py
 │
-└── results/                   # Simulation Outputs
-    └── figures/               # Generated plots
+├── results/                       # Simulation Outputs
+│   └── figures/                   # Generated plots
+│       ├── active_agency.png
+│       ├── creative_action.png
+│       ├── identity_formation.png
+│       ├── interpersonal_resonance.png
+│       ├── passive_adaptation.png
+│       └── sensitivity_analysis.png
+│
+├── LICENSE
+├── README.md
+├── requirements.txt
+└── setup.py
+
 ```
 
 ## Installation
