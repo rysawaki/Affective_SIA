@@ -89,6 +89,7 @@ plot_identity_simulation(agent_A, resonance_components, shared_engram_history, c
 # Note: Ensure plt.show() is removed from visualization.py or called AFTER this.
 os.makedirs('../results/figures', exist_ok=True)
 plt.savefig('../results/figures/identity_formation.png', dpi=300)
+plt.savefig('../results/figures_pdf/identity_formation.pdf')
 print("Figure saved to results/figures/identity_formation.png")
 
 plt.show()

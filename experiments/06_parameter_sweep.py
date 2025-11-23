@@ -84,6 +84,7 @@ plt.legend()
 # Save Figure
 os.makedirs('../results/figures', exist_ok=True)
 plt.savefig('../results/figures/sensitivity_analysis.png', dpi=300)
+plt.savefig('../results/figures_pdf/sensitivity_analysis.pdf')
 print("Figure saved with error bars.")
 
 plt.show()
