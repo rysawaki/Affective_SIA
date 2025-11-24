@@ -1,10 +1,20 @@
 {
+  "title": "Simulation of Self-Imprint Attribution (SIA) Model",
+  "description": "Initial implementation of the Self-Imprint Attribution (SIA) model framework. This software provides a computational environment to simulate agent-environment interactions based on SIA hypothesis.",
   "creators": [
     {
-      "name": "Ryota, Sawaki", 
+      "name": "Sawaki, R",
       "affiliation": "Independent Researcher"
     }
   ],
-  "title": "Self-Imprint Attribution (SIA) Model",
-  "description": "A Computational Framework for Identity Formation via Shared Affective Resonance."
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "Computational Psychiatry",
+    "SIA Model",
+    "Active Inference",
+    "Simulation",
+    "Cognitive Modeling"
+  ],
+  "upload_type": "software"
 }
