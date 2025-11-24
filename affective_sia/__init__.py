@@ -1,5 +1,5 @@
 # Version Information
-__version__ = '1.0.0'
+__version__ = '0.1.0'
 
 # Expose main classes at the top level for user convenience
 # This allows: from affective_sia import Identity_SIA_Agent
