@@ -118,6 +118,8 @@ $$I(t) = \int_{0}^{t} \text{Shared}(\tau) \cdot A(\tau) \, d\tau$$
 
 Where $\text{Shared}(t)$ is non-zero only when both action and affect are synchronized between agents.
 
+---
+
 ## 🛡️ License & Philosophy: Why AGPL v3?
 
 **This project is licensed under the GNU Affero General Public License v3.0 (AGPL v3).**
