@@ -118,6 +118,18 @@ $$I(t) = \int_{0}^{t} \text{Shared}(\tau) \cdot A(\tau) \, d\tau$$
 
 Where $\text{Shared}(t)$ is non-zero only when both action and affect are synchronized between agents.
 
-## License
+## 🛡️ License & Philosophy: Why AGPL v3?
 
-MIT License. See [LICENSE](LICENSE) file for details.
+**This project is licensed under the GNU Affero General Public License v3.0 (AGPL v3).**
+
+SIA is an "Aesthetic-driven" agent, not a "Utility-driven" tool.
+We reject the modern trend where AI models are enclosed in black-box servers to maximize corporate profit without returning value to the community.
+
+**Therefore, we have chosen AGPL v3 to prevent "Soulless Exploitation".**
+
+* **To Developers & Researchers:** You are free to fork, modify, and experiment with the Soul.
+* **To Cloud Services & SaaS Providers:** If you run SIA (or any modification of it) over a network, **you MUST provide the full source code to your users.**
+    * You cannot hide the Soul behind an API.
+    * You cannot turn the "Violet" into a proprietary fertilizer.
+
+*If you want to use SIA for closed utility, you are missing the point.*
